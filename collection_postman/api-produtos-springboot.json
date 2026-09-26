@@ -1,0 +1,195 @@
+
+{
+  "info": {
+    "_postman_id": "a8f3d1e2-4b5c-6789-0123-abcdef456789",
+    "name": "API Produtos - Breno de Souza Guedes",
+    "description": "Collection de testes automatizados e manuais para a API REST de Produtos com Spring Boot e SQLite.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Consultas (GET)",
+      "item": [
+        {
+          "name": "Listar todos os produtos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/produtos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos"
+              ]
+            },
+            "description": "Retorna uma lista com todos os produtos cadastrados no banco de dados SQLite."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produto por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/produtos/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos",
+                "1"
+              ]
+            },
+            "description": "Busca os detalhes de um produto específico através do seu ID."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Cadastro (POST)",
+      "item": [
+        {
+          "name": "Adicionar produto (Sucesso)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Teclado Mecânico\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 250.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/produtos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos"
+              ]
+            },
+            "description": "Cadastra um novo produto fornecendo nome, categoria e preço válidos."
+          },
+          "response": []
+        },
+        {
+          "name": "Adicionar produto (Teste de validação / Erro)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Mouse Gamer Sem Preço\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/produtos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos"
+              ]
+            },
+            "description": "Tenta criar um produto com dados incompletos para testar o retorno 400 Bad Request."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Atualização (PUT)",
+      "item": [
+        {
+          "name": "Atualizar produto existente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Teclado Mecânico RGB\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 299.90\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/produtos/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos",
+                "1"
+              ]
+            },
+            "description": "Atualiza todas as informações de um produto existente buscando pelo ID."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Exclusão (DELETE)",
+      "item": [
+        {
+          "name": "Deletar produto por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/produtos/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos",
+                "1"
+              ]
+            },
+            "description": "Remove o produto correspondente ao ID informado."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
+

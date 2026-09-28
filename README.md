@@ -31,6 +31,8 @@ A entidade `Produto` possui a seguinte estrutura de campos:
 * **nome** (`String`): Nome do produto.
 * **categoria** (`String`): Categoria do produto.
 * **preco** (`Double`): Preço unitário do produto.
+* **descricao** (`String`): Descrição detalhada do produto.
+* **destaque** (`Boolean`): Indica se o produto está em destaque.
 
 ---
 

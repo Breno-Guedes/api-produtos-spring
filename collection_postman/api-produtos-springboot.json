@@ -1,4 +1,3 @@
-
 {
   "info": {
     "_postman_id": "a8f3d1e2-4b5c-6789-0123-abcdef456789",
@@ -46,6 +45,45 @@
             "description": "Busca os detalhes de um produto específico através do seu ID."
           },
           "response": []
+        },
+        {
+          "name": "Buscar descrição do produto por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/produtos/1/descricao",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos",
+                "1",
+                "descricao"
+              ]
+            },
+            "description": "Retorna a descrição detalhada de um produto específico através do seu ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar produto em destaque",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/produtos/destaque",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "produtos",
+                "destaque"
+              ]
+            },
+            "description": "Retorna o produto marcado em destaque."
+          },
+          "response": []
         }
       ]
     },
@@ -65,7 +103,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nome\": \"Teclado Mecânico\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 250.00\n}",
+              "raw": "{\n  \"nome\": \"Teclado Mecânico\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 250.00,\n  \"descricao\": \"Teclado mecânico switch blue com iluminação RGB\",\n  \"destaque\": true\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -81,7 +119,7 @@
                 "produtos"
               ]
             },
-            "description": "Cadastra um novo produto fornecendo nome, categoria e preço válidos."
+            "description": "Cadastra um novo produto fornecendo nome, categoria, preço, descrição e destaque válidos."
           },
           "response": []
         },
@@ -136,7 +174,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nome\": \"Teclado Mecânico RGB\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 299.90\n}",
+              "raw": "{\n  \"nome\": \"Teclado Mecânico RGB\",\n  \"categoria\": \"Periféricos\",\n  \"preco\": 299.90,\n  \"descricao\": \"Teclado mecânico switch blue com iluminação RGB personalizável\",\n  \"destaque\": false\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -192,4 +230,3 @@
     }
   ]
 }
-

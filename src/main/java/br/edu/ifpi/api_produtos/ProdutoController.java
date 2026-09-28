@@ -21,13 +21,21 @@ public class ProdutoController {
 
     // List<Produto> produtos = new ArrayList<>();
 
-    // GET /produtos - Listar todos
+    // GET /produtos
     @GetMapping
     public List<Produto> listarProdutos() {
         return repository.findAll();
     }
 
-    // GET /produtos/{id} - Buscar por ID
+    // GET /produtos/destaque
+    @GetMapping("/destaque")
+    public List<Produto> obterDestaques() {
+        return repository.findAll().stream()
+                .filter(p -> Boolean.TRUE.equals(p.getDestaque()))
+                .toList();
+    }
+
+    // GET /produtos/{id}
     @GetMapping("/{id}")
     public ResponseEntity<Produto> buscarProdutoPorId(@PathVariable Long id) {
         return repository.findById(id)
@@ -35,10 +43,18 @@ public class ProdutoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST /produtos - Adicionar novo produto
+    // GET /produtos/{id}/descricao
+    @GetMapping("/{id}/descricao")
+    public ResponseEntity<String> obterDescricaoPorId(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(produto -> ResponseEntity.ok(produto.getDescricao()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // POST /produtos
     @PostMapping
     public ResponseEntity<String> adicionarProduto(@RequestBody Produto produto) {
-        if (produto != null && produto.getNome() != null && produto.getCategoria() != null && produto.getPreco() != null) {
+        if (produto != null && produto.getNome() != null && produto.getCategoria() != null && produto.getPreco() != null && produto.getDescricao() != null && produto.getDestaque() != null) {
             repository.save(produto);
             return ResponseEntity.status(HttpStatus.CREATED).body("Produto adicionado");
         } else {
@@ -46,15 +62,17 @@ public class ProdutoController {
         }
     }
 
-    // PUT /produtos/{id} - Atualizar produto existente
+    // PUT /produtos/{id}
     @PutMapping("/{id}")
     public ResponseEntity<String> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
-        if (produto != null && produto.getNome() != null && produto.getCategoria() != null && produto.getPreco() != null) {
+        if (produto != null && produto.getNome() != null && produto.getCategoria() != null && produto.getPreco() != null && produto.getDescricao() != null && produto.getDestaque() != null) {
             return repository.findById(id)
                     .map(p -> {
                         p.setNome(produto.getNome());
                         p.setCategoria(produto.getCategoria());
                         p.setPreco(produto.getPreco());
+                        p.setDescricao(produto.getDescricao());
+                        p.setDestaque(produto.getDestaque());
                         repository.save(p);
                         return ResponseEntity.ok("Produto atualizado");
                     })
@@ -64,7 +82,7 @@ public class ProdutoController {
         }
     }
 
-    // DELETE /produtos/{id} - Deletar produto
+    // DELETE /produtos/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarProduto(@PathVariable Long id) {
         if (!repository.existsById(id)) {

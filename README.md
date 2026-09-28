@@ -67,9 +67,11 @@ A aplicação disponibiliza as seguintes rotas na URL base `http://localhost:808
 | **Método** | **Endpoint** | **Descrição** | **Corpo da Requisição (JSON)** | **Resposta** |
 |---|---|---|---|---|
 | **GET** | `/produtos` | Lista todos os produtos cadastrados | N/A | `200 OK` (Lista em JSON) |
+| **GET** | `/produtos/destaque` | Lista todos os produtos em destaque | N/A | `200 OK` (Lista em JSON) |
 | **GET** | `/produtos/{id}` | Busca um produto específico pelo ID | N/A | `200 OK` ou `404 Not Found` |
-| **POST** | `/produtos` | Cadastra um novo produto | `{"nome": "string", "categoria": "string", "preco": 0.0}` | `201 Created` ou `400 Bad Request` |
-| **PUT** | `/produtos/{id}` | Atualiza os dados de um produto pelo ID | `{"nome": "string", "categoria": "string", "preco": 0.0}` | `200 OK`, `400 Bad Request` ou `404 Not Found` |
+| **GET** | `/produtos/{id}/descricao` | Retorna a descrição de um produto pelo ID | N/A | `200 OK` ou `404 Not Found` |
+| **POST** | `/produtos` | Cadastra um novo produto | `{"nome": "string", "categoria": "string", "preco": 0.0, "descricao": "string", "destaque": true}` | `201 Created` ou `400 Bad Request` |
+| **PUT** | `/produtos/{id}` | Atualiza os dados de um produto pelo ID | `{"nome": "string", "categoria": "string", "preco": 0.0, "descricao": "string", "destaque": false}` | `200 OK`, `400 Bad Request` ou `404 Not Found` |
 | **DELETE** | `/produtos/{id}` | Remove um produto pelo ID | N/A | `200 OK` ou `404 Not Found` |
 
 ---
